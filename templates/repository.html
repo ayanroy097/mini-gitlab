@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
+    <title>Repository: {{reponame}}</title>
+</head>
+
+<body>
+    <h3><span>{{reponame}}</span></h3>
+    <br><br>
+    <!-- <h3>Contents:</h3> -->
+    <ul>
+
+        <h3 class="page-heading mb-3">Repository</h3>
+        <div id="repos" style="margin-bottom: 100px;">
+
+            <div class="card card-body mb-2">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- <span>{{reponame}}</span> -->
+                        <ul>
+                            {% for content in contentInfo %}
+                            <li><a href="{{content.download_url}}" target="_blank"
+                                    class="btn btn-danger btn-block mb-4">{{content.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="badge badge-primary">Stars: {{repoInfo.stargazers_count}} </span>
+                        <span class="badge badge-primary">Followers: {{repoInfo.watchers_count}}</span>
+                        <span class="badge badge-success">Forks: {{repoInfo.forks_count}}</span><br>
+                        <span class="badge badge-success">Issues: {{repoInfo.open_issues_count}}</span><br>
+                        <span class="badge badge-success">Created At: {{repoInfo.created_at}}</span><br>
+                        <span class="badge badge-success">Updated At: {{repoInfo.updated_at}}</span><br>
+                        <span class="badge badge-success">Pushed At: {{repoInfo.pushed_at}}</span><br>
+                        <span class="badge badge-success">Descriptions: {{repoInfo.description}}</span><br>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </ul>
+    <!-- <div><a href="/authorize" class="btn btn-success">Authorize for CRUD operations.</a><br><br></div> -->
+
+
+        
+    <div>
+        <br>
+        <form method="post" action="http://localhost:5000/update">
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type='name' name='name'></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><input type='text' name='desc'></td>
+                </tr>
+                <p>Private Repo:</p>
+                <input type="radio" id="True" name="Private" value="True">
+                <label for="True">True</label><br>
+                <input type="radio" id="False" name="Private" value="False">
+                <label for="False">False</label><br>
+
+                <tr>
+                    <td><input type="submit" class="btn btn-danger" value="Update this repo"></td>
+                </tr>
+            </table>
+        </form>
+        <br>
+    </div>
+    <div>
+        <br>
+        <form method="post" action="http://localhost:5000/create">
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type='name' name='name' required
+                            data-validation-required-message="Please enter valid repo name."></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><input type='text' name='desc'></td>
+                </tr>
+                <p>Private Repo:</p>
+                <input type="radio" id="True" name="Private" value="True">
+                <label for="True">True</label><br>
+                <input type="radio" id="False" name="Private" value="False">
+                <label for="False">False</label><br>
+
+                <tr>
+                    <td><input type="submit" class="btn btn-danger" value="Create a new repo"></td>
+                </tr>
+            </table>
+        </form>
+
+        <br>
+    </div>
+    <a href="/delete" class="btn btn-success">Delete this repo</a><br><br>
+
+
+
+
+</body>
+
+</html>
